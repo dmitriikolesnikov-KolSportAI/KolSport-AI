@@ -1,3 +1,7 @@
+from analysis.trend import recovery_trend
+from analysis.history import load_history
+from analysis.statistics import average_recovery
+from data.save_history import save_history
 from analysis.readiness import get_recommendation
 from analysis.fatigue import calculate_fatigue
 from analysis.recovery import calculate_recovery
@@ -31,3 +35,13 @@ print(f"Recovery: {recovery:.0f}%")
 print(f"Fatigue: {fatigue:.0f}%")
 
 print(get_recommendation(recovery))
+save_history(name, recovery, fatigue)
+history = load_history()
+
+average = average_recovery(history)
+
+trend = recovery_trend(history)
+
+print()
+print(f"Средний Recovery за все время: {average:.1f}%")
+print(trend)
